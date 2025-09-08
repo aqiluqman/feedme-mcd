@@ -1,5 +1,3 @@
-const { Bot } = require('./models/bot');
-const { Order } = require('./models/order');
 const orderController = require('./controllers/orderController');
 
 const readLine = require('readline');

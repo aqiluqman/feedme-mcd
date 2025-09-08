@@ -7,27 +7,27 @@ class OrderQueue {
     constructor() {
         this.queue = [];
     }
+    
+    addQueue(orderData) {
+        //manages all the orders that come in. Prioritize VIP orders.
+        const order = new Order(
+            orderData.id,
+            orderData.createTime,
+            orderData.status,
+            orderData.orderType,
+            orderData.completionTime
+        );
 
-addQueue(orderData) {
-    //manages all the orders that come in. Prioritize VIP orders.
-    const order = new Order(
-        orderData.id,
-        orderData.createTime,
-        orderData.status,
-        orderData.orderType,
-        orderData.completionTime
-    );
-
-    if(order.orderType === 'VIP') {
-        this.queue.unshift(order); // add to front of queue
-    } else {
-        this.queue.push(order); // add to end of queue
+        if(order.orderType === 'VIP') {
+            this.queue.unshift(order); // add to front of queue
+        } else {
+            this.queue.push(order); // add to end of queue
+        }
+        return this.queue;
     }
-    return this.queue;
-}
 
     dequeue() {
-        return this.queue.shift();
+        return this.queue.shift(); //take out order from the Q
     }
 
     isEmpty() {
