@@ -1,7 +1,6 @@
 const { Bot } = require('./models/bot');
 const { Order } = require('./models/order');
 const orderController = require('./controllers/orderController');
-const orderQueue = require('./utils/OrderQueue');
 
 const readLine = require('readline');
 const rl = readLine.createInterface({
@@ -10,32 +9,39 @@ const rl = readLine.createInterface({
 })
 
 console.log("Welcome to FeedMe-McD! Available commands:");
-console.log("1. create-normal - Create a normal order");
-console.log("2. create-vip - Create a VIP order");
+console.log("1. [cn] - Create a Normal Order");
+console.log("2. [cv] - Create a VIP order");
+console.log("3. [st] - Check Order Status");
+console.log("4. [add] - Add Bot");
+console.log("5. [rm] - Remove Bot");
 rl.setPrompt('> ');
 rl.prompt(); //start prompting the user 
+
+// Periodically check for idle bots every 100ms
+setInterval(() => {
+    orderController.checkIdleBots();
+}, 100);
 
 rl.on('line', (input) => { //listen for user inputs
     input = input.trim();   
     switch(input){
-        case 'create-normal':
+        case 'cn':
             console.log("Creating normal order...");
             console.log(orderController.createOrder('NORMAL'))
             break;
-        case 'create-vip':
+        case 'cv':
             console.log("Creating VIP order...");
             console.log(orderController.createOrder('VIP'));
             break;
-        case 'status':
+        case 'st':
             console.log("Fetching status...");
-            console.log(orderController.getStatus());
+            orderController.getStatus();
             break;
-        case 'add-bot':
+        case 'add':
             console.log("Adding a new bot...");
             console.log(orderController.addBot());
-            console.log(orderController.processBot());
             break;
-        case 'remove-bot':
+        case 'rm':
             console.log("Removing a bot...");
             console.log(orderController.removeBot());
             break;
