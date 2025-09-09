@@ -24,11 +24,9 @@ rl.on('line', (input) => { //listen for user inputs
     input = input.trim();   
     switch(input){
         case 'cn':
-            console.log("Creating normal order...");
             console.log(orderController.createOrder('NORMAL'))
             break;
         case 'cv':
-            console.log("Creating VIP order...");
             console.log(orderController.createOrder('VIP'));
             break;
         case 'st':
