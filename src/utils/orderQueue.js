@@ -19,7 +19,7 @@ class OrderQueue {
         );
 
         if(order.orderType === 'VIP') {
-            let index = this.queue.map(o => o.orderType).lastIndexOf('VIP');
+            let index = this.queue.map(o => o.orderType).lastIndexOf('VIP'); //list out order types and find the last index of VIP
 
             if(index === -1){ //if no vip then add to the front
                 this.queue.unshift(order);
