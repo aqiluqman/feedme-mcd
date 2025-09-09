@@ -4,18 +4,17 @@ const { OrderQueue } = require('../utils/OrderQueue');
 
 class OrderController{
     constructor(){
-        this.orders = []; //store current orders
         this.pending = [] //store pending orders
         this.ongoing = [] //store ongoing orders
         this.completed = [] //store completed orders
-        this.nextOrderId = 1;
-        this.orderQueue = new OrderQueue();
+        this.nextOrderId = 1; //asign unique orderId
+        this.orderQueue = new OrderQueue(); //order queue management
         this.bots = []; //store available bots
-        this.nextBotId = 1;
+        this.nextBotId = 1; //asign unique botId
     }
 
     createOrder(type){
-        console.log("Create order of type: " + type);
+        console.log("Creating " + type + " order...");
         const order = new Order(this.nextOrderId, new Date(), 'PENDING', type);
         this.nextOrderId++;
         this.pending = this.orderQueue.addQueue(order); //add orders into pending first
