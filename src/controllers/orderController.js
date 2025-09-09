@@ -25,7 +25,7 @@ class OrderController{
         console.log("\n=================== Order Status ===================");
 
         //pending
-        console.log("\nPending Orders:");
+        console.log("\nPending Orders: " + this.pending.length);
         console.table(this.pending.map(order => ({
             "Order ID": order.id,
             "Type": order.orderType,
@@ -33,7 +33,7 @@ class OrderController{
         })));
 
         //ongoing
-        console.log("\nOngoing Orders:");
+        console.log("\nOngoing Orders: " + this.ongoing.length);
         console.table(this.ongoing.map(order => ({
             "Order ID": order.id,
             "Type": order.orderType,
@@ -41,7 +41,7 @@ class OrderController{
         })));
 
         //completed
-        console.log("\nCompleted Orders:");
+        console.log("\nCompleted Orders: " + this.completed.length);
         console.table(this.completed.map(order => ({
             "Order ID": order.id,
             "Type": order.orderType,

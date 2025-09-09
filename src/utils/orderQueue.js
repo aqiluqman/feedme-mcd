@@ -19,7 +19,13 @@ class OrderQueue {
         );
 
         if(order.orderType === 'VIP') {
-            this.queue.unshift(order); // add to front of queue
+            let index = this.queue.map(o => o.orderType).lastIndexOf('VIP');
+
+            if(index === -1){ //if no vip then add to the front
+                this.queue.unshift(order);
+            } else {
+                this.queue.splice(index + 1, 0, order) //add behind the exisitng vip order
+            }
         } else {
             this.queue.push(order); // add to end of queue
         }
@@ -28,10 +34,6 @@ class OrderQueue {
 
     dequeue() {
         return this.queue.shift(); //take out order from the Q
-    }
-
-    isEmpty() {
-        return this.queue.length === 0;
     }
 }
 
